@@ -1,7 +1,6 @@
 '''
 Snake game.
-Authors:Akinwole Akinnusi, Jerrod Jackson
-
+Authors: Akinwole Akinnusi, Jerrod Jackson
 '''
 
 import pygame
@@ -30,9 +29,9 @@ DIRECTION_DOWN = (0, 1)
 # Background color of the snake grid.
 COLOR_BACKGROUND = (255, 255, 255)  # rgb color for white
 # This is the color of the snake's head. 
-COLOR_SNAKE_HEAD = (255, 0, 0)      # rgb color for red
+COLOR_SNAKE_HEAD = (15, 148, 84)      # rgb color for red
 # This is the color of the rest of the snake.
-COLOR_SNAKE = (0, 255, 0)           # rgb color for green
+COLOR_SNAKE = (237, 29, 36)           # rgb color for green
 # This is the color for the snake's food.
 COLOR_FOOD = (255, 200, 0)          # rgb color for orange
 # This is the color for the game over text.
@@ -49,7 +48,11 @@ def get_direction(previous_direction, event_key):
     elif event_key == pygame.K_UP:
         return DIRECTION_UP
     return previous_direction
-
+    if event_key == pygame.K_RIGHT:
+        return DIRECTION_RIGHT
+    elif event_key == pygame.K_DOWN:
+        return DIRECTION_DOWN
+    return previous_direction
 def create_food_position():
     """Returns a random 2-tuple in the grid where the food should be located.
     The first element is the x position. Must be an int between 0 and GRID_WIDTH - 1, inclusively.
@@ -257,3 +260,4 @@ def start_game():
 
 # Start the snake game.
 start_game()
+
