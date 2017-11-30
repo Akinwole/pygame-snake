@@ -47,7 +47,6 @@ def get_direction(previous_direction, event_key):
         return DIRECTION_LEFT
     elif event_key == pygame.K_UP:
         return DIRECTION_UP
-    return previous_direction
     if event_key == pygame.K_RIGHT:
         return DIRECTION_RIGHT
     elif event_key == pygame.K_DOWN:
@@ -58,7 +57,12 @@ def create_food_position():
     The first element is the x position. Must be an int between 0 and GRID_WIDTH - 1, inclusively.
     The second element is the y position. Must be an int between 0 and GRID_HEIGHT - 1, inclusively.
     """
-    return
+    x_position = random.randrange(0, GRID_WIDTH -1)
+    
+    y_position = random.randrange(0, GRID_HEIGHT -1)
+        
+    return(x_position, y_position) 
+    
 
 def snake_ate_food(snake, food):
     """Returns whether food was eaten by the snake.
@@ -66,7 +70,10 @@ def snake_ate_food(snake, food):
     food - 2-tuple representing the position in the grid of the food
     This function should return True if the head of the snake is in the same position as food.
     """
-    return False
+    if  snake[0] == food:
+        return True
+    elif food[-1] == snake:
+        return False
 
 def snake_ran_out_of_bounds(snake):
     """Returns whether the snake has ran off one of the four edges of the grid.
@@ -257,6 +264,16 @@ def start_game():
         # After drawing the frame, pause the game momentarily to make sure the game
         # does not progress too quickly.
         clock.tick(get_snake_speed(snake))
+
+    for event in pygame.event.get():
+          # Quit the program when the user presses the x in the corner of the window.
+          if event.type == pygame.QUIT:
+            pygame.display.quit()
+            pygame.quit()
+            sys.exit()
+          # Process events when the user presses a key on the keyboard.
+          # https://www.pygame.org/docs/ref/key.html
+
 
 # Start the snake game.
 start_game()
